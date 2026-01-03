@@ -36,4 +36,6 @@ jobs:
           git diff --cached --quiet || git commit -m "update latest feeds"
           git push
           git add latest.json latest_6h.json latest_24h.json latest_7d.json
+          - cron: "0 * * * *"
+
 

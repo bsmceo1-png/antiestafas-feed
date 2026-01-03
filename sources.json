@@ -1,23 +1,76 @@
 {
   "sources": [
     {
-      "name": "CISA (USA) - All",
+      "name": "CCN-CERT (España / CNI) - Noticias",
+      "country": "ES",
+      "type": "CERT",
+      "rss": "https://www.ccn-cert.cni.es/component/obrss/rss-noticias.feed"
+    },
+    {
+      "name": "INCIBE-CERT (España) - Avisos de seguridad (all)",
+      "country": "ES",
+      "type": "CERT",
+      "rss": "https://www.incibe.es/feed/avisos-seguridad/all"
+    },
+
+    {
+      "name": "CISA (USA) - Alerts (all)",
       "country": "US",
       "type": "CERT",
       "rss": "https://www.cisa.gov/uscert/ncas/all.xml"
     },
+    {
+      "name": "FBI (USA) - National Press Releases",
+      "country": "US",
+      "type": "LAW_ENFORCEMENT",
+      "rss": "https://www.fbi.gov/feeds/national-press-releases/RSS"
+    },
+    {
+      "name": "FTC (USA) - Press Releases",
+      "country": "US",
+      "type": "CONSUMER",
+      "rss": "https://www.ftc.gov/feeds/press-release.xml"
+    },
+    {
+      "name": "FTC (USA) - Consumer Protection Press Releases",
+      "country": "US",
+      "type": "CONSUMER",
+      "rss": "https://www.ftc.gov/feeds/press-release-consumer-protection.xml"
+    },
+    {
+      "name": "FTC (USA) - Consumer Blog (scams/advice)",
+      "country": "US",
+      "type": "CONSUMER",
+      "rss": "https://www.consumer.ftc.gov/blog/gd-rss.xml"
+    },
+
     {
       "name": "NCSC (UK) - All",
       "country": "GB",
       "type": "CERT",
       "rss": "https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml"
     },
+
     {
-      "name": "CCN-CERT (España) - Noticias",
-      "country": "ES",
+      "name": "NCSC (Netherlands) - Advisories",
+      "country": "NL",
       "type": "CERT",
-      "rss": "https://www.ccn-cert.cni.es/component/obrss/rss-noticias.feed"
+      "rss": "https://advisories.ncsc.nl/rss/advisories"
     },
+    {
+      "name": "NCSC (Netherlands) - News (EN)",
+      "country": "NL",
+      "type": "CERT",
+      "rss": "https://feeds.english.ncsc.nl/news.rss"
+    },
+
+    {
+      "name": "BSI (Germany) - Newsfeed",
+      "country": "DE",
+      "type": "CERT",
+      "rss": "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed.xml"
+    },
+
     {
       "name": "CERT-EU - Security Bulletins",
       "country": "EU",
@@ -25,17 +78,46 @@
       "rss": "https://cert.europa.eu/cert/Data/newsletter/reviewlatest-SecurityBulletins.xml"
     },
     {
+      "name": "ENISA (EU) - News items (RSS)",
+      "country": "EU",
+      "type": "GOV",
+      "rss": "http://www.enisa.europa.eu/media/news-items/news-wires/RSS"
+    },
+    {
+      "name": "ENISA (EU) - Press releases (RSS)",
+      "country": "EU",
+      "type": "GOV",
+      "rss": "http://www.enisa.europa.eu/media/press-releases/press-releases/RSS"
+    },
+
+    {
       "name": "Canadian Centre for Cyber Security - Alerts",
       "country": "CA",
       "type": "CERT",
       "rss": "https://cyber.gc.ca/webservice/en/rss/alerts"
     },
+
     {
-      "name": "CERT-FR (Francia) - Feed",
+      "name": "CERT-FR (France) - Feed",
       "country": "FR",
       "type": "CERT",
       "rss": "https://www.cert.ssi.gouv.fr/feed/"
     },
+
+    {
+      "name": "CERT.PL (Poland) - RSS",
+      "country": "PL",
+      "type": "CERT",
+      "rss": "https://cert.pl/en/rss.xml"
+    },
+
+    {
+      "name": "GovCERT (Switzerland) - Blog",
+      "country": "CH",
+      "type": "CERT",
+      "rss": "https://www.govcert.ch/blog/rss.xml"
+    },
+
     {
       "name": "AusCERT (Australia) - Bulletins",
       "country": "AU",
@@ -43,16 +125,43 @@
       "rss": "https://auscert.org.au/rss/bulletins/"
     },
     {
-      "name": "CERT.PL (Polonia) - RSS",
-      "country": "PL",
-      "type": "CERT",
-      "rss": "https://cert.pl/en/rss.xml"
+      "name": "Scamwatch (Australia) - News feed",
+      "country": "AU",
+      "type": "CONSUMER",
+      "rss": "https://www.scamwatch.gov.au/rss/news-feed.xml"
+    },
+
+    {
+      "name": "KrebsOnSecurity (global) - RSS",
+      "country": "INTL",
+      "type": "MEDIA",
+      "rss": "https://krebsonsecurity.com/feed/"
     },
     {
-      "name": "GovCERT (Suiza) - Blog",
-      "country": "CH",
+      "name": "BleepingComputer (global) - RSS",
+      "country": "INTL",
+      "type": "MEDIA",
+      "rss": "https://www.bleepingcomputer.com/feed/"
+    },
+    {
+      "name": "Malwarebytes Labs (global) - RSS",
+      "country": "INTL",
+      "type": "VENDOR",
+      "rss": "https://blog.malwarebytes.com/feed/"
+    },
+    {
+      "name": "The Hacker News (global) - RSS",
+      "country": "INTL",
+      "type": "MEDIA",
+      "rss": "https://feeds.feedburner.com/TheHackersNews"
+    },
+
+    {
+      "name": "USOM (Turkey) - Threat RSS (si no parsea, elimínalo)",
+      "country": "TR",
       "type": "CERT",
-      "rss": "https://www.govcert.ch/blog/rss.xml"
+      "rss": "https://www.usom.gov.tr/rss/tehdit.rss"
     }
   ]
 }
+

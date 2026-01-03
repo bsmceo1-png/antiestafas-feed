@@ -7,7 +7,10 @@ import feedparser
 KEYWORDS = {
     "SMISHING": [r"\bsms\b", r"smishing", r"texto", r"mensaje"],
     "VISHING": [r"vishing", r"llamada", r"call", r"phone"],
-    "PHISHING": [r"phishing", r"suplant", r"imperson", r"credential", r"credenciales", r"iniciar sesi[oó]n", r"login"],
+    "PHISHING": [
+        r"phishing", r"suplant", r"imperson", r"credential", r"credenciales",
+        r"iniciar sesi[oó]n", r"login"
+    ],
     "SCAM_GENERAL": [r"scam", r"fraud", r"estafa", r"fraude", r"spoof", r"impersonation"],
     "MALWARE": [r"malware", r"ransomware", r"trojan", r"botnet"],
 }
@@ -31,7 +34,6 @@ def safe_summary(entry) -> str:
     summ = strip_html(getattr(entry, "summary", "") or getattr(entry, "description", "") or "")
     # Máximo 240 chars para no “republicar” contenido.
     base = (summ[:240] + "…") if len(summ) > 240 else summ
-    # Si no hay summary útil, devolvemos el título.
     return base if base else title
 
 def parse_date(entry) -> str:
@@ -54,27 +56,22 @@ def in_window(published_at_utc: str, window_hours: int) -> bool:
         now = datetime.now(timezone.utc)
         return dt >= (now - timedelta(hours=window_hours))
     except Exception:
+        # Si no se puede parsear, no descartes.
         return True
 
-def main():
-    with open("sources.json", "r", encoding="utf-8") as f:
-        sources = json.load(f)["sources"]
-
-    window_hours = 6
+def build_feed(window_hours: int, sources: list) -> dict:
     items = []
     now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
     for s in sources:
         feed = feedparser.parse(s["rss"])
-        for e in feed.entries[:40]:
+        for e in feed.entries[:60]:
             title = strip_html(getattr(e, "title", "") or "")
             link = getattr(e, "link", "") or ""
             published_at = parse_date(e)
             summary_es = safe_summary(e)
-
             category = classify(title, summary_es)
 
-            # Solo guardamos “lo reciente” para latest.json (ventana 6h).
             if not in_window(published_at, window_hours):
                 continue
 
@@ -83,7 +80,7 @@ def main():
                 "published_at_utc": published_at,
                 "countries": [s["country"]],
                 "category": category,
-                "channels": [],  # se puede inferir mejor más adelante
+                "channels": [],
                 "summary_es": summary_es if summary_es else title,
                 "tactics": [],
                 "severity": 3 if category in ("PHISHING", "SMISHING", "VISHING", "SCAM_GENERAL") else 2,
@@ -93,17 +90,31 @@ def main():
             }
             items.append(item)
 
-    # Ordena por fecha
     items.sort(key=lambda x: x["published_at_utc"], reverse=True)
 
-    latest = {
+    return {
         "generated_at_utc": now,
         "window_hours": window_hours,
-        "items": items[:120]
+        "items": items[:150]
     }
 
+def main():
+    with open("sources.json", "r", encoding="utf-8") as f:
+        sources = json.load(f)["sources"]
+
+    latest_6h = build_feed(6, sources)
+    latest_24h = build_feed(24, sources)
+
+    # Archivos nuevos
+    with open("latest_6h.json", "w", encoding="utf-8") as f:
+        json.dump(latest_6h, f, ensure_ascii=False, indent=2)
+
+    with open("latest_24h.json", "w", encoding="utf-8") as f:
+        json.dump(latest_24h, f, ensure_ascii=False, indent=2)
+
+    # Mantén latest.json como 6h por compatibilidad con tu GPT actual
     with open("latest.json", "w", encoding="utf-8") as f:
-        json.dump(latest, f, ensure_ascii=False, indent=2)
+        json.dump(latest_6h, f, ensure_ascii=False, indent=2)
 
 if __name__ == "__main__":
     main()

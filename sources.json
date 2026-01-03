@@ -1,0 +1,58 @@
+{
+  "sources": [
+    {
+      "name": "CISA (USA) - All",
+      "country": "US",
+      "type": "CERT",
+      "rss": "https://www.cisa.gov/uscert/ncas/all.xml"
+    },
+    {
+      "name": "NCSC (UK) - All",
+      "country": "GB",
+      "type": "CERT",
+      "rss": "https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml"
+    },
+    {
+      "name": "CCN-CERT (España) - Noticias",
+      "country": "ES",
+      "type": "CERT",
+      "rss": "https://www.ccn-cert.cni.es/component/obrss/rss-noticias.feed"
+    },
+    {
+      "name": "CERT-EU - Security Bulletins",
+      "country": "EU",
+      "type": "CERT",
+      "rss": "https://cert.europa.eu/cert/Data/newsletter/reviewlatest-SecurityBulletins.xml"
+    },
+    {
+      "name": "Canadian Centre for Cyber Security - Alerts",
+      "country": "CA",
+      "type": "CERT",
+      "rss": "https://cyber.gc.ca/webservice/en/rss/alerts"
+    },
+    {
+      "name": "CERT-FR (Francia) - Feed",
+      "country": "FR",
+      "type": "CERT",
+      "rss": "https://www.cert.ssi.gouv.fr/feed/"
+    },
+    {
+      "name": "AusCERT (Australia) - Bulletins",
+      "country": "AU",
+      "type": "CERT",
+      "rss": "https://auscert.org.au/rss/bulletins/"
+    },
+    {
+      "name": "CERT.PL (Polonia) - RSS",
+      "country": "PL",
+      "type": "CERT",
+      "rss": "https://cert.pl/en/rss.xml"
+    },
+    {
+      "name": "GovCERT (Suiza) - Blog",
+      "country": "CH",
+      "type": "CERT",
+      "rss": "https://www.govcert.ch/blog/rss.xml"
+    }
+  ]
+}

@@ -24,7 +24,7 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Build latest.json
+      - name: Build latest feeds
         run: |
           python scripts/scripts/build_feed.py
 
@@ -32,6 +32,6 @@ jobs:
         run: |
           git config user.name "antiestafas-bot"
           git config user.email "antiestafas-bot@users.noreply.github.com"
-          git add latest.json
-          git diff --cached --quiet || git commit -m "update latest.json"
+          git add latest.json latest_6h.json latest_24h.json
+          git diff --cached --quiet || git commit -m "update latest feeds"
           git push

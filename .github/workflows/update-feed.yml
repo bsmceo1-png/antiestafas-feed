@@ -26,7 +26,7 @@ jobs:
 
       - name: Build latest.json
         run: |
-          python scripts/build_feed.py
+          python scripts/scripts/build_feed.py
 
       - name: Commit and push if changed
         run: |
